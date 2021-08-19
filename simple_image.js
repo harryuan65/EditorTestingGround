@@ -1,4 +1,4 @@
-class Ruby {
+class SimpleImage {
   constructor({data, api}) {
     this.api = api;
     this.data = {
@@ -69,7 +69,7 @@ class Ruby {
   }
   render() {
     this.wrapper = document.createElement('div');
-    this.wrapper.classList.add('ruby-wrapper');
+    this.wrapper.classList.add('image-wrapper');
 
     if (this.data && this.data.url){
       this._createImage(this.data.url, this.data.caption);
