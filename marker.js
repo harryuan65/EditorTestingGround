@@ -72,13 +72,14 @@ class Marker {
   }
 
   showActions(mark) {
-    const {backgroundColor} = mark.style;
+    const {
+      backgroundColor
+    } = mark.style;
     this.colorPicker.value = backgroundColor ? this.convertToHex(backgroundColor) : '#f5f1cc';
-    // this.colorPicker.value = mark.styles.backgroundColor || '#f5f1cc';
 
     this.colorPicker.onchange = () => {
-      mark.styles.backgroundColor = this.colorPicker.value;
-    }
+      mark.style.backgroundColor = this.colorPicker.value;
+    };
     this.colorPicker.hidden = false;
   }
 
@@ -111,5 +112,12 @@ class Marker {
     hexb = hexb.length === 1 ? '0' + hexb : hexb;
 
     return '#' + hexr + hexg + hexb;
-}
+  }
+  static get sanitize() {
+    return {
+      mark: {
+        class: 'cdx-marker'
+      }
+    };
+  }
 }
