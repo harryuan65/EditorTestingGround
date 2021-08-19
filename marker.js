@@ -8,7 +8,7 @@ class Marker {
     return this._state;
   }
 
-  static set state(newState){
+  static set state(newState) {
     this._state = newState;
     this.button.classList.toggle(this.api.styles.inlineToolButtonActive, state);
   }
@@ -62,9 +62,54 @@ class Marker {
     range.insertNode(text);
   }
 
-  checkState() {　// called when user selected text, to check if the format is on
+  renderActions() {
+    this.colorPicker = document.createElement('input');
+    this.colorPicker.type = 'color';
+    this.colorPicker.value = '#f5f1cc';
+    this.colorPicker.hidden = true;
+
+    return this.colorPicker;
+  }
+
+  showActions(mark) {
+    const {backgroundColor} = mark.style;
+    this.colorPicker.value = backgroundColor ? this.convertToHex(backgroundColor) : '#f5f1cc';
+    // this.colorPicker.value = mark.styles.backgroundColor || '#f5f1cc';
+
+    this.colorPicker.onchange = () => {
+      mark.styles.backgroundColor = this.colorPicker.value;
+    }
+    this.colorPicker.hidden = false;
+  }
+
+  hideActions() {
+    this.colorPicker.onchange = null;
+    this.colorPicker.hidden = true;
+  }
+
+  checkState() { // called when user selected text, to check if the format is on
     const mark = this.api.selection.findParentTag(this.tag);
 
     this.state = !!mark;
+
+    if (this.state) {
+      this.showActions(mark);
+    } else {
+      this.hideActions();
+    }
   }
+
+  convertToHex(color) {
+    const rgb = color.match(/(\d+)/g);
+
+    let hexr = parseInt(rgb[0]).toString(16);
+    let hexg = parseInt(rgb[1]).toString(16);
+    let hexb = parseInt(rgb[2]).toString(16);
+
+    hexr = hexr.length === 1 ? '0' + hexr : hexr;
+    hexg = hexg.length === 1 ? '0' + hexg : hexg;
+    hexb = hexb.length === 1 ? '0' + hexb : hexb;
+
+    return '#' + hexr + hexg + hexb;
+}
 }
