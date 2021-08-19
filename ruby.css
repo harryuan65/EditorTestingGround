@@ -1,0 +1,21 @@
+.cdx-ruby {
+  /* background: rgba(135, 255, 119, 0.521); */
+  padding-left: 3px;
+}
+.cdx-ruby__button{
+  font-weight: bold;
+}
+.cdx-hint {
+  font-size: 12px;
+  margin: 0 7px;
+}
+.cdx-wrap-input{
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+input.cdx-rt__text{
+  border: 1px solid #e7e7e7;
+  outline: none;
+  position: relative;
+  width: 70%;
+}

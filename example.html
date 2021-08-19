@@ -11,8 +11,15 @@
 
 <body>
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+  </style>
   <script src="simple_image.js"></script>
   <script src="marker.js"></script>
+  <script src="ruby.js"></script>
+  <link href="ruby.css" rel="stylesheet" />
   <link href="marker.css" rel="stylesheet" />
   <link href="simple_image.css" rel="stylesheet" />
 
@@ -23,18 +30,45 @@
     const editor = new EditorJS({
       autofocus: true,
       tools: {
-        simple_image: {class: SimpleImage, inlineToolbar: ['link', 'bold']},
-        mark: Marker
+        simple_image: {
+          class: SimpleImage,
+          inlineToolbar: ['link', 'bold']
+        },
+        mark: Marker,
+        ruby: Ruby
       },
       data: {
         time: 1552744582955,
-        blocks: [
+        blocks: [{
+            type: 'paragraph',
+            data: {
+              text: 'PLACEHOLDER唷～～沒事'
+            }
+          },
           {
             type: 'paragraph',
             data: {
-              text: 'This is a apple and I like it'
+              text: 'PLACEHOLDER唷～～沒事'
             }
-          }
+          },
+          {
+            type: 'paragraph',
+            data: {
+              text: 'PLACEHOLDER唷～～沒事'
+            }
+          },
+          {
+            type: 'paragraph',
+            data: {
+              text: 'PLACEHOLDER唷～～沒事'
+            }
+          },
+          {
+            type: 'paragraph',
+            data: {
+              text: 'より多く日本の文化に<ruby class="cdx-ruby">触<rt class="cdx-rt">ふ</rt></ruby>れることができました。'
+            }
+          },
           // {
           //   type: "simple_image",
           //   data: {
@@ -52,9 +86,22 @@
     const output = document.getElementById('output');
 
     saveButton.addEventListener('click', () => {
-      editor.save().then( savedData => {
+      editor.save().then(savedData => {
         output.innerHTML = JSON.stringify(savedData, null, 4);
       })
+    })
+    document.addEventListener('mouseup', () => {
+      let sel = document.getSelection();
+      if (sel && sel.anchorNode && sel.anchorNode != document & sel.toString() != "") {
+        let a = sel.anchorNode;
+        let f = sel.focusNode;
+        let r = document.createRange();
+        r.setStartBefore(a);
+        r.setEndAfter(f);
+        // sel.removeAllRanges();
+        // sel.addRange(r);
+        console.log(r.toString());
+      }
     })
   </script>
 </body>
