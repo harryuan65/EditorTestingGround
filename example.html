@@ -12,6 +12,8 @@
 <body>
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
   <script src="simple_image.js"></script>
+  <script src="marker.js"></script>
+  <link href="marker.css" rel="stylesheet" />
   <link href="simple_image.css" rel="stylesheet" />
 
   <div id="editorjs"></div>
@@ -21,20 +23,27 @@
     const editor = new EditorJS({
       autofocus: true,
       tools: {
-        simple_image: {class: SimpleImage, inlineToolbar: ['link', 'bold']}
+        simple_image: {class: SimpleImage, inlineToolbar: ['link', 'bold']},
+        mark: Marker
       },
       data: {
         time: 1552744582955,
         blocks: [
           {
-            type: "simple_image",
+            type: 'paragraph',
             data: {
-              url: "https://cdn.pixabay.com/photo/2017/09/01/21/53/blue-2705642_1280.jpg",
-              caption: 'yoyyo',
-              withBorder: false,
-              withBackground: true
+              text: 'This is a apple and I like it'
             }
           }
+          // {
+          //   type: "simple_image",
+          //   data: {
+          //     url: "https://cdn.pixabay.com/photo/2017/09/01/21/53/blue-2705642_1280.jpg",
+          //     caption: 'yoyyo',
+          //     withBorder: false,
+          //     withBackground: true
+          //   }
+          // }
         ],
         version: "2.22.2"
       }
