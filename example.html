@@ -11,6 +11,8 @@
 
 <body>
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/footnotes@latest"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -19,6 +21,7 @@
   <script src="simple_image.js"></script>
   <script src="marker.js"></script>
   <script src="ruby.js"></script>
+  <script src="example_table.js"></script>
   <link href="ruby.css" rel="stylesheet" />
   <link href="marker.css" rel="stylesheet" />
   <link href="simple_image.css" rel="stylesheet" />
@@ -35,7 +38,23 @@
           inlineToolbar: ['link', 'bold']
         },
         mark: Marker,
-        ruby: Ruby
+        ruby: Ruby,
+        table: {
+          class: Table,
+          inlineToolbar: ['link', 'bold', 'ruby', 'marker'],
+          tunes: ['footnotes']
+        },
+        example_table: ExampleTable,
+        // list: {
+        //   class: ListTool,
+        //   tunes: ['footnotes'], // note that stirng here should be the same as tools object key for Tune
+        // },
+        paragraph: {
+          Îtunes: ['footnotes'], // note that stirng here should be the same as tools object key for Tune
+        },
+        footnotes: {
+          class: FootnotesTune,
+        },
       },
       data: {
         time: 1552744582955,
