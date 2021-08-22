@@ -9,10 +9,6 @@ class Ruby {
   }
 
   static set state(newState) {
-    console.log('setting: this._state = ', newState)
-    console.log('setting: this._state = ', newState)
-    console.log('setting: this._state = ', newState)
-    console.log('setting: this._state = ', newState)
     this._state = newState
     this.button.classList.toggle(this.api.styles.inlineToolButtonActive, state);
   }
@@ -69,7 +65,6 @@ class Ruby {
     const foundTag = this.api.selection.findParentTag(this.baseTag, this.baseClass) || this.api.selection.findParentTag(this.subTag, this.subClass);
 
     if (foundTag.tagName === this.baseTag) {
-      console.log('foundTag ruby:', foundTag);
       let rt = foundTag.querySelector('rt')
       if (rt) rt.remove();
 
@@ -78,7 +73,6 @@ class Ruby {
       foundTag.remove();
       range.insertNode(document.createTextNode(text));
     } else {
-      console.log('foundTag rt:', foundTag);
       let ruby = foundTag.parentElement;
       foundTag.remove();
       const text = ruby.textContent;
@@ -128,7 +122,6 @@ class Ruby {
 
   checkState() { // called when user selected text, to check if the format is on
     let foundTag = this.api.selection.findParentTag(this.baseTag) || this.api.selection.findParentTag(this.subTag);
-    console.log('check state is ', !!foundTag, ' ', foundTag)
     this.state = !!foundTag;
 
     if (this.state) {

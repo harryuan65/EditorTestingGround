@@ -34,7 +34,6 @@ class SimpleImage {
   renderSettings(){
     const wrapper = document.createElement('div');
     this.settings.forEach(tune => {
-      console.log(tune.name,':', this.data[tune.name]);
       let button = document.createElement('div');
 
       button.classList.add('cdx-settings-button');
@@ -43,7 +42,6 @@ class SimpleImage {
 
       button.innerHTML = tune.icon;
       button.addEventListener('click', (event) => {
-        console.log(event.target);
         this._toggleTune(tune.name);
         button.classList.toggle('cdx-settings-button--active');
       })
@@ -53,7 +51,6 @@ class SimpleImage {
     return wrapper;
   }
   _toggleTune(name) {
-    console.log(name + " is being toggled");
     this.data[name] = !this.data[name];
     this._applySettingsToView();
   }
@@ -105,7 +102,6 @@ class SimpleImage {
   save(blockContent) {
     let img = blockContent.querySelector('img');
     const caption = blockContent.querySelector('[contenteditable]');
-    console.log(this.data);
     return Object.assign(this.data, {
       url: img.src,
       caption: caption.innerHTML || ''
